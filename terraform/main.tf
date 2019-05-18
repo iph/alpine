@@ -20,14 +20,26 @@ variable "tag" {
   type = "string"
 }
 
+variable "stage" {
+  type    = "string"
+  default = "dev" # Other one is prod
+}
 
-variable "site_domain" {
+variable "default_domain" {
   # I already own this domain in aws.
   default = "iph.io"
 }
 
-## Main domain that should already be setpu if you bought a uri already.
-data "aws_route53_zone" "main" {
-  name         = "${var.site_domain}."
-  private_zone = false
+locals {
+  //site_domain = var.stage == "dev" ? "${var.tag}.${var.default_domain}" : "${var.default_domain}"
+  site_domain = "${var.tag}.${var.default_domain}"
+}
+
+
+module "routes" {
+  source         = "./routes"
+  region         = var.region
+  tag            = var.tag
+  stage          = var.stage
+  default_domain = var.default_domain
 }
