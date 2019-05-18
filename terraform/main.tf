@@ -26,14 +26,8 @@ variable "site_domain" {
   default = "iph.io"
 }
 
-
-data "aws_acm_certificate" "website" {
-  domain = "${tag}.${var.site_domain}"
-
-  statuses    = ["ISSUED"]
-  most_recent = true
-}
-
-data "aws_route53_zone" "website" {
-  name = "${tag}.${var.site_domain}."
+## Main domain that should already be setpu if you bought a uri already.
+data "aws_route53_zone" "main" {
+  name         = "${var.site_domain}."
+  private_zone = false
 }
