@@ -58,3 +58,7 @@ resource "aws_acm_certificate_validation" "cert" {
     "${aws_route53_record.subdomain_cert_validation.fqdn}",
   ]
 }
+
+output "acm_certificate" {
+  value = "${aws_acm_certificate.cert.arn}"
+}
