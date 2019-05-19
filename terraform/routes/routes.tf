@@ -62,3 +62,11 @@ resource "aws_acm_certificate_validation" "cert" {
 output "acm_certificate" {
   value = "${aws_acm_certificate.cert.arn}"
 }
+
+output "sub-record" {
+  value = "${aws_route53_zone.sub-domain.zone_id}"
+}
+
+output "sub-domain" {
+  value = "${local.site_domain}"
+}
