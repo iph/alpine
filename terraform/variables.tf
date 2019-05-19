@@ -19,6 +19,11 @@ variable "app_count" {
   default     = 1
 }
 
+variable "app_image" {
+  description = "Docker image to run in the ECS cluster"
+  default     = "adongy/hostname-docker:latest"
+}
+
 variable "fargate_cpu" {
   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
   default     = "256"
