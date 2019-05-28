@@ -21,7 +21,7 @@ variable "app_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "adongy/hostname-docker:latest"
+  default     = "772764487949.dkr.ecr.us-west-2.amazonaws.com/gloomhaven-images:latest"
 }
 
 variable "fargate_cpu" {
