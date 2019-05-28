@@ -3,6 +3,14 @@ provider "aws" {
   region = "${var.region}"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "gloomhaven-terraform-app-bucket"
+    key    = "remote/states/state.tfstate"
+    region = "us-west-2"
+  }
+}
+
 module "routes" {
   source         = "./routes"
   region         = var.region
